@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # _*_coding:UTF-8_*_
 import os
-
 from nester import print_lol
+import pickle
 
 os.getcwd()
 os.chdir('C:\\Users\\Jonnick\\PycharmProjects\\head_first_python\\src')
@@ -26,8 +26,21 @@ except IOError as err:
     print('File error' + str(err))
 
 try:
-    with open('man_data.txt', 'w') as man_file, open('other_data.txt', 'w') as other_file:
-        print_lol(man, fh=man_file)
-        print_lol(other, fh=other_file)
-except IOError:
+    with open('man_data.txt', 'wb') as man_file, open('other_data.txt', 'wb') as other_file:
+        pickle.dump(man, man_file)
+        pickle.dump(other, other_file)
+except IOError as err:
     print('File error' + str(err))
+except pickle.PickleError as p_err:
+    print('PickleError' + str(p_err))
+
+new_man = []
+try:
+    with open('man_data.txt', 'rb') as man_file:
+        new_man = pickle.load(man_file)
+except IOError as err:
+    print('File error' + str(err))
+except pickle.PickleError as p_err:
+    print('PickleError' + str(p_err))
+
+print_lol(new_man)
