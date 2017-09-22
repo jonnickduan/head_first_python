@@ -1,9 +1,11 @@
+#!/usr/bin/env python
+# _*_coding:UTF-8_*_
 import os
 
 from nester import print_lol
 
 os.getcwd()
-os.chdir('C:/Users/JonnickDuan/PycharmProjects/myPython01/src//HeadFirstPython/chapter3')
+os.chdir('C:\\Users\\Jonnick\\PycharmProjects\\head_first_python\\src')
 os.getcwd()
 man = []
 other = []
@@ -29,6 +31,3 @@ try:
         print_lol(other, fh=other_file)
 except IOError:
     print('File error' + str(err))
-
-with open('man_data.txt') as mdf:
-    print(mdf.readline())
