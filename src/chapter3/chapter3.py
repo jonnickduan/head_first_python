@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # _*_coding:UTF-8_*_
 import os
-from nester import print_lol
 import pickle
+from src.chapter3.nester import print_lol
 
 os.getcwd()
-os.chdir('C:\\Users\\Jonnick\\PycharmProjects\\head_first_python\\src')
+os.chdir('/Users/jonnickduan/PycharmProjects/head_first_python')
 os.getcwd()
 man = []
 other = []
