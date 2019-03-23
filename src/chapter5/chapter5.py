@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # _*_coding:UTF-8_*_
-
-
 import os
 
 os.getcwd()
-os.chdir('C:\\Users\\Jonnick\\PycharmProjects\\head_first_python\\src\\chapter5')
+os.chdir('/Users/jonnickduan/PycharmProjects/head_first_python')
 
 
 def sanitize(time_string):
@@ -20,24 +18,25 @@ def sanitize(time_string):
     return mins + ':' + secs
 
 
+class AthleteList(list):
+    def __init__(self, a_name, a_dob=None, a_times=None):
+        super().__init__()
+        if a_times is None:
+            a_times = []
+        self.name = a_name
+        self.dob = a_dob
+        self.extend(a_times)
+
+    def top3(self):
+        return sorted(set([sanitize(t) for t in self]))[0:3]
+
+
 def get_coach_data(fn):
-    """
-    :rtype: []
-    """
     try:
         with open(fn) as time_file:
-            return time_file.readline().strip().split(',')
+            data = time_file.readline()
+            templ = data.strip().split(',')
+            return AthleteList(templ.pop(0), templ.pop(0), templ)
     except IOError as err:
         print('File error: ' + str(err))
         return None
-
-
-james = get_coach_data('james.txt')
-julie = get_coach_data('julie.txt')
-mikey = get_coach_data('mikey.txt')
-sarah = get_coach_data('sarah.txt')
-
-print(sorted(set([sanitize(each_time) for each_time in james]))[0:3])
-print(sorted(set([sanitize(each_time) for each_time in julie]))[0:3])
-print(sorted(set([sanitize(each_time) for each_time in mikey]))[0:3])
-print(sorted(set([sanitize(each_time) for each_time in sarah]))[0:3])
